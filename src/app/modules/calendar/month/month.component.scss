@@ -1,0 +1,26 @@
+.day-list{
+  //margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.each-day{
+  background-color: #ff4081;
+  color: white;
+  border: 1px #ff4081 solid;
+  border-radius: 100px;
+}
+
+.each-day:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
+
+.each-date{
+  width: 20px;
+  height: 20px;
+  border: 1px #000 solid;
+
+}

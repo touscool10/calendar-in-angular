@@ -1,0 +1,79 @@
+body { width: 100%; height: 100%; margin: 0px; padding: 0px; }
+
+.year-form-field{
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 100px;
+  //background-color: #ff4081;
+}
+
+.tab-group-style
+{
+    margin: auto;
+    width: 600px;
+    height: 500px;
+    background-color: #ccc;
+}
+
+.day-list-header{
+
+  /*display: flex;
+  flex-direction: row;
+  justify-content: space-around; */
+  margin-left: 10px;
+  margin-right: 10px;
+
+}
+
+.month-days-row{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.cel{
+  margin: 10px;
+
+  border: none;
+  background-color: #e6e7e9;
+  min-height: 80px;
+  max-width: 13%;
+  padding: 10px 10px 10px 10px;
+}
+
+.cel-first{
+  background-color: green;
+  margin-right: 10px;
+}
+
+.cel-last{
+  background-color: red;
+}
+
+.cel-work-day{
+  background-color: yellow;
+  margin-right: 10px;
+}
+
+.today{
+
+  border: 1px solid aqua;
+  border-radius: 100px;
+  background-color: aqua;
+
+}
+
+
+
+
+@media(max-width:768px) {
+
+}
+
+@media (max-width:430px) {
+
+}
+
+@media(max-width: 400px) {
+
+}
+

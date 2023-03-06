@@ -1,0 +1,69 @@
+/* For use in src/lib/core/theming/_palette.scss */
+@use '@angular/material' as mat;
+
+$crespinprimary: (
+    50 : #e0ffff,
+    100 : #b3ffff,
+    200 : #80ffff,
+    300 : #4dffff,
+    400 : #26ffff,
+    500 : #00ffff,
+    600 : #00ffff,
+    700 : #00ffff,
+    800 : #00ffff,
+    900 : #00ffff,
+    A100 : #ffffff,
+    A200 : #f2ffff,
+    A400 : #bfffff,
+    A700 : #a6ffff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$mat-crespinsecondary: (
+    50 : #e3e3ee,
+    100 : #babad4,
+    200 : #8c8cb8,
+    300 : #5e5e9b,
+    400 : #3c3c85,
+    500 : #191970,
+    600 : #161668,
+    700 : #12125d,
+    800 : #0e0e53,
+    900 : #080841,
+    A100 : #7878ff,
+    A200 : #4545ff,
+    A400 : #1212ff,
+    A700 : #0000f7,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+

@@ -1,0 +1,59 @@
+
+
+
+<mat-form-field appearance="outline" class="year-form-field">
+  <mat-select [(value)]="selectedYear" placeholder="Ano" (selectionChange)="getSelectedYear(selectedYear);">
+    <mat-option *ngFor="let year of years" [value]="year">
+      {{ year }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+
+<div  class="">
+  <mat-tab-group
+  [selectedIndex]="selectedMonth"
+  [backgroundColor]="'primary'"
+  (selectedTabChange)="getSelectedTabInfos($event);">
+
+    <mat-tab [label]="month.name" *ngFor="let month of months; let i= index" >
+
+      <div class="day-list-header mt-4 row" >
+        <div *ngFor="let day of days" class="col text-center"
+          [ngClass]="{'cel-first': day.id === 0, 'cel-last': day.id === 6, 'cel-work-day': (day.id !== 0 && day.id !== 6)}">
+          {{ day.abbreviation }}
+        </div>
+      </div>
+
+
+
+      <div class="month-days-row mt-2 row center" *ngFor="let week of monthDaysGroup">
+        <div *ngFor="let date of week; let i = index;" class="col cel"
+        [ngClass]="{'today': isToday(date)}">
+          {{ date.date }}
+        </div>
+      </div>
+
+     <!-- <app-month [actualMonth]="selectedMonth" [totalMonthDays]="totalMonthDays" [firstDayOfMonth]="firstDayOfMonth" ></app-month> -->
+    </mat-tab>
+
+  </mat-tab-group>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
