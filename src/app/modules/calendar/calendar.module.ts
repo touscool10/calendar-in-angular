@@ -1,4 +1,3 @@
-import { CalendarService } from './../calendar.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -35,9 +34,6 @@ import { MatListModule } from '@angular/material/list';
     MatFormFieldModule,
     MatSelectModule,
     MatChipsModule
-  ],
-  providers: [
-    CalendarService
   ]
 })
 export class CalendarModule { }

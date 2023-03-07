@@ -1,7 +1,7 @@
 import { Day, Month, MonthDays } from './interfaces';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import { CalendarService } from '../calendar.service';
+
 
 @Component({
   selector: 'app-calendar',
@@ -49,9 +49,7 @@ export class CalendarComponent implements OnInit{
 
   public emptyDays: number = 0;
 
-  constructor(
-    private calendarService: CalendarService
-  ) {
+  constructor() {
 
   }
 
