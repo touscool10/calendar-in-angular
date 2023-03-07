@@ -28,10 +28,11 @@
 
 
 
-      <div class="month-days-row mt-2 row center" *ngFor="let week of monthDaysGroup">
+      <div class="month-days-row mt-2 row center" *ngFor="let week of monthWeeksGroups">
         <div *ngFor="let date of week; let i = index;" class="col cel"
         [ngClass]="{'today': isToday(date)}">
-          {{ date.date }}
+          <span>{{ date?.date }}</span>
+          <div class="hoje text-center" *ngIf="isToday(date)">Hoje</div>
         </div>
       </div>
 

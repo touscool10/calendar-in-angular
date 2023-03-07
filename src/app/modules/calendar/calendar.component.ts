@@ -45,7 +45,9 @@ export class CalendarComponent implements OnInit{
   public totalMonthDays: number = 0;
   public firstDayOfMonth: number = 0;
   public monthDaysArray: MonthDays[] = [];
-  public monthDaysGroup: any[] = [];
+  public monthWeeksGroups: any[] = [];
+
+  public emptyDays: number = 0;
 
   constructor(
     private calendarService: CalendarService
@@ -69,8 +71,7 @@ export class CalendarComponent implements OnInit{
     this.selectedDate = today.getDate();
     this.getTotalMonthDays();
     this.getfirstDayOfMonth();
-    this.selectToday();
-    this.generateDays();
+    this.generateMonthDays();
   }
 
   generateYears(){
@@ -81,11 +82,20 @@ export class CalendarComponent implements OnInit{
     }
   }
 
-  generateDays(){
+  getTotalMonthDays(){
+    this.totalMonthDays = new Date( this.selectedYear, this.selectedMonth + 1 , 0 ).getDate();
+    //console.log("total Month Days ", this.totalMonthDays );
+  }
+
+  getfirstDayOfMonth(){
+    this.firstDayOfMonth = new Date( this.selectedYear, this.selectedMonth, 1 ).getDay();
+    //console.log("first Day Of Month", this.firstDayOfMonth );
+  }
+
+  generateMonthDays(){
     this.monthDaysArray = [];
     const firstDay: number = 1;
     const lastDay: number = this.totalMonthDays;
-    console.log("totalMonthDays : " , this.totalMonthDays);
 
     for (let i = firstDay; i <= lastDay; i++) {
       let day: MonthDays = {
@@ -95,24 +105,42 @@ export class CalendarComponent implements OnInit{
       }
       this.monthDaysArray.push(day);
     }
-    this.groupColumns();
+    this.computeEmptyDays(this.selectedMonth, this.selectedYear);
+    this.populateMonth();
+    this.groupMonthWeeks();
   }
 
-  groupColumns(){
-    this.monthDaysGroup  = [];
-    // this.monthDaysArray
-    for (let i = 0; i < this.monthDaysArray.length; i+=7) {
-      this.monthDaysGroup.push(this.monthDaysArray.slice(i, i + 7));
+  private computeEmptyDays(month: number, year: number){
+    let monthFirstDay = new Date(year, month, 1).getDay();
+    this.emptyDays =  monthFirstDay;
+  }
+
+  populateMonth(){
+    let monthWeeks: MonthDays[] = [];
+    for(let i = 0; i < this.emptyDays; i++){
+      monthWeeks.push(
+        {
+          date: null,
+          month: this.selectedMonth,
+          year: this.selectedYear
+        }
+      );
     }
-    console.log("monthDaysGroup :", this.monthDaysGroup);
 
+    this.monthDaysArray = [...monthWeeks, ...this.monthDaysArray];
+
+    //console.log("monthDaysArray : ", this.monthDaysArray);
   }
 
-  populateMonths(){
+  groupMonthWeeks(){
+    this.monthWeeksGroups = [];
 
+    for (let i = 0; i < this.monthDaysArray.length; i=i+7) {
+      this.monthWeeksGroups.push(this.monthDaysArray.slice(i, i + 7));
+    }
+
+    console.log("monthWeeksGroups : ", this.monthWeeksGroups);
   }
-
-
 
   getSelectedYear(year: number){
     this.selectedYear = year;
@@ -124,26 +152,8 @@ export class CalendarComponent implements OnInit{
     this.selectedMonth = month;
     this.getTotalMonthDays();
     this.getfirstDayOfMonth();
-    this.generateDays();
-    //console.log("selected Month", this.selectedMonth);
+    this.generateMonthDays();
   }
-
-  getTotalMonthDays(){
-   this.totalMonthDays = new Date( this.selectedYear, this.selectedMonth + 1 , 0 ).getDate();
-   //console.log("total Month Days ", this.totalMonthDays );
-  }
-
-  getfirstDayOfMonth(){
-    this.firstDayOfMonth = new Date( this.selectedYear, this.selectedMonth, 1 ).getDay();
-    //console.log("first Day Of Month", this.firstDayOfMonth );
-  }
-
-  selectToday(){
-
-
-    console.log("[selectedYear, selectedMonth, selectedDate, totalMonthDays, firstDayOfMonth]",
-                 [this.selectedYear, this.selectedMonth, this.selectedDate, this.totalMonthDays, this.firstDayOfMonth]);
-  };
 
   isToday(date: MonthDays){
     this.dateIsToday = false;
@@ -163,23 +173,13 @@ export class CalendarComponent implements OnInit{
 
   getSelectedTabInfos(event: MatTabChangeEvent){
 
-    //this.tabSelectionChangeEvent.emit("Tab changed!");
-    console.log("SelectedTabInfos", event);
     let monthName: string  = event.tab.textLabel;
     let selectedMonth: Month | number | undefined  = this.months.find(m => m.name === monthName);
     selectedMonth = selectedMonth ? selectedMonth.id : 0;
-
     this.getSelectedMonth(selectedMonth);
 
-    this.generateDays();
-
-    this.calendarService.emitTabChangeEvent();
-
   }
 
-  populateMonth(){
-
-  }
 
 }
 

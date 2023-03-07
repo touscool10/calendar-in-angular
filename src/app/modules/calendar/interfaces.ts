@@ -12,7 +12,7 @@ export interface Day {
 }
 
 export interface MonthDays {
-  date: number;
+  date: number | null;
   month: number;
   year: number;
 }
